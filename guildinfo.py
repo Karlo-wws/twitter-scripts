@@ -33,7 +33,8 @@ data = str(x.fetchall())
 
 for results in c['news']:
         if results['type'] == "playerAchievement":
-                char = results['character']
+                member = results['character']
+                char = member.encode("utf-8")
                 type = results['type']
                 achid = results['achievement']['id']
                 timestamp = results['timestamp']
