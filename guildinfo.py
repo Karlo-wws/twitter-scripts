@@ -27,6 +27,7 @@ logging.debug(URL)
 r = requests.get(URL)
 c = r.json()
 d = json.dumps(c, sort_keys=True, indent=0)
+x.execute("SET NAMES 'utf8'")
 exql = "SELECT stamp FROM wwspost.news"
 existing = x.execute(exql)
 data = str(x.fetchall())
