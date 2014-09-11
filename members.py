@@ -26,6 +26,7 @@ logging.debug(URL)
 r = requests.get(URL)
 c = r.json()
 d = json.dumps(c, sort_keys=True, indent=0)
+x.execute("SET NAMES 'utf8'")
 levelql = "SELECT name, level FROM wwspost.members"
 cur_level = x.execute(levelql)
 levels = dict(x.fetchall())
