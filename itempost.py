@@ -4,7 +4,7 @@ from connection import conn,x
 
 Host = "http://us.battle.net"
 logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING)
-
+x.execute("SET NAMES 'utf8'")
 sql = "SELECT chrname, itemid, stamp FROM wwspost.news WHERE posted='0' and type in ('itemPurchase','itemLoot','itemCraft')"
 
 info = x.execute(sql)
