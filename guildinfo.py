@@ -25,7 +25,7 @@ GuildName = urllib.quote(Guild)
 URL = Host + "/api/wow/guild/" + Realm + "/" + GuildName + "?fields=news"
 logging.debug(URL)
 r = requests.get(URL)
-c = r.json()
+c = unicode(r.json())
 d = json.dumps(c, sort_keys=True, indent=0)
 x.execute("SET NAMES 'utf8'")
 exql = "SELECT stamp FROM wwspost.news"
