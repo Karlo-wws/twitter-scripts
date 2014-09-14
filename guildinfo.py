@@ -76,7 +76,7 @@ for results in c['news']:
                 itemid = results['itemId']
                 timestamp = results['timestamp']
                 if str(timestamp) not in data:
-                        isql = "INSERT INTO wwspost.news(stamp, chrname, type, itemid) VALUES(" + str(timestamp) + ", '" + char + "', '" + type + "', " + str(itemid) + ")"
+                        isql = "INSERT INTO wwspost.news(stamp, chrname, type, itemid) VALUES('%s','%s','%s','%s')" % (timestamp,char,type,itemid)
                         try:
                                 x.execute(isql)
                                 conn.commit()
