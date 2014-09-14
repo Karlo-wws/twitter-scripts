@@ -75,6 +75,8 @@ for results in c['news']:
                 type = results['type']
                 itemid = results['itemId']
                 timestamp = results['timestamp']
+                print member
+                print char
                 if str(timestamp) not in data:
                         isql = "INSERT INTO wwspost.news(stamp, chrname, type, itemid) VALUES('%s','%s','%s','%s')" % (timestamp,char,type,itemid)
                         try:
