@@ -81,7 +81,7 @@ for results in c['news']:
                         print type
                         print itemid
                         print timestamp
-                        isql = "INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (enc,timestamp,type,itemid)
+                        isql = str("INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (enc,timestamp,type,itemid))
                         try:
                                 x.execute(isql)
                                 conn.commit()
