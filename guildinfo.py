@@ -32,7 +32,7 @@ exql = "SELECT stamp FROM wwspost.news"
 existing = x.execute(exql)
 data = str(x.fetchall())
 
-for results in c['news']:
+for results in c['news'].decode("utf-8"):
         if results['type'] == "playerAchievement":
                 member = results['character']
                 char = member.encode("utf-8")
