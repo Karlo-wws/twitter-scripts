@@ -70,7 +70,8 @@ for results in c['news']:
                                         print "MySQL Error: %s" % str(e)
                                         conn.rollback()
         else:
-                char = results['character']
+                member = results['character']
+                char = member.encode("utf-8")
                 type = results['type']
                 itemid = results['itemId']
                 timestamp = results['timestamp']
