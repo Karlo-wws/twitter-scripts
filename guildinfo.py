@@ -71,7 +71,7 @@ for results in c['news']:
                                         conn.rollback()
         else:
                 member = results['character']
-                enc = member.encode("utf-8")
+                enc = member.decode("utf-8")
                 type = results['type']
                 itemid = results['itemId']
                 timestamp = results['timestamp']
