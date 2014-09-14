@@ -25,14 +25,14 @@ GuildName = urllib.quote(Guild)
 URL = Host + "/api/wow/guild/" + Realm + "/" + GuildName + "?fields=news"
 logging.debug(URL)
 r = requests.get(URL)
-c = unicode(r.json())
+c = r.json()
 d = json.dumps(c, sort_keys=True, indent=0)
 x.execute("SET NAMES 'utf8'")
 exql = "SELECT stamp FROM wwspost.news"
 existing = x.execute(exql)
 data = str(x.fetchall())
 
-for results in c['news'].decode("utf-8"):
+for results in c['news']:
         if results['type'] == "playerAchievement":
                 member = results['character']
                 char = member.encode("utf-8")
