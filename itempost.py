@@ -8,6 +8,7 @@ x.execute("SET NAMES 'utf8'")
 sql = "SELECT chrname, itemid, stamp FROM wwspost.news WHERE posted='0' and type in ('itemPurchase','itemLoot','itemCraft')"
 
 info = x.execute(sql)
+print info
 numcheck = int(x.rowcount)
 if numcheck > 0:
         data = x.fetchall()
