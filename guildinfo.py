@@ -71,14 +71,14 @@ for results in c['news']:
                                         conn.rollback()
         else:
                 member = results['character']
-                char = member.encode("utf-8")
+                enc = member.encode("utf-8")
                 type = results['type']
                 itemid = results['itemId']
                 timestamp = results['timestamp']
                 print member
                 print char
                 if str(timestamp) not in data:
-                        isql = "INSERT INTO wwspost.news(stamp, chrname, type, itemid) VALUES('%s','%s','%s','%s')" % (timestamp,char,type,itemid)
+                        isql = "INSERT INTO wwspost.news(stamp, chrname, type, itemid) VALUES('%s','%s','%s','%s')" % (timestamp,enc,type,itemid)
                         try:
                                 x.execute(isql)
                                 conn.commit()
