@@ -78,7 +78,7 @@ for results in c['news']:
                 if str(timestamp) not in data:
                         print member
                         print char
-                        isql = "INSERT INTO wwspost.news(stamp, chrname, type, itemid) VALUES('%s','%s','%s','%s')" % (timestamp,enc,type,itemid)
+                        isql = "INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (enc,timestamp,type,itemid)
                         try:
                                 x.execute(isql)
                                 conn.commit()
