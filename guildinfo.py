@@ -82,9 +82,9 @@ for results in c['news']:
                 r = requests.get(URL2)
                 ci = r.json()
                 di = json.dumps(c, sort_keys=True, indent=0)
-                ilvl = ci['itemLevel']
                 print "URL is:" + URL2
                 print ci
+                ilvl = ci['itemLevel']
                 print ilvl
                 if ilvl > minilvl:
                         if str(timestamp) not in data:
