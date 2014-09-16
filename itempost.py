@@ -14,7 +14,7 @@ if numcheck > 0:
         data = x.fetchall()
         for row in data:
                 charname = row[0]
-                enc = str(charname)
+                #enc = str(charname)
                 itemid = str(row[1])
                 stamp = str(row[2])
                 URL = Host + "/api/wow/item/" + itemid
@@ -25,7 +25,7 @@ if numcheck > 0:
                 print enc
                 print itemid
                 print stamp
-                POST = '%s acquired %s http://www.wowhead.com/item=%s #loot #worldofwarcraft' % (enc,itemname,itemid)
+                POST = '%s acquired %s http://www.wowhead.com/item=%s #loot #worldofwarcraft' % (charname,itemname,itemid)
                 logging.warning('Posting: %s' % POST)
                 try:
                         os.system('python /var/www/wwsguild/twitter-scripts/posttwit.py -m "%s"' % POST)
