@@ -3,7 +3,7 @@ import MySQLdb as mdb
 from connection import conn,x
 
 
-logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING)
+logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.DEBUG)
 
 Host = "http://us.battle.net"
 minilvl = 500
