@@ -77,34 +77,34 @@ for results in c['news']:
                 type = results['type']
                 itemid = results['itemId']
                 timestamp = results['timestamp']
-                URL2 = Host + "/api/wow/item/" + str(itemid)
-                logging.debug(URL2)
-                r = requests.get(URL2)
-                ci = r.json()
-                di = json.dumps(c, sort_keys=True, indent=0)
-                print "URL is:" + URL2
-                print ci
-                ilvl = ci['itemLevel']
-                print ilvl
-                if ilvl > minilvl:
-                        if str(timestamp) not in data:
-                                print member
-                                print enc
-                                print type
-                                print itemid
-                                print timestamp
-                                isql = str("INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (enc,timestamp,type,itemid))
-                                try:
-                                        x.execute(isql)
-                                        conn.commit()
-                                        logging.warning('Running query: %s' % isql)
-                                except mdb.Error, e:
-                                        try:
-                                                print "MySQL Error [%d]: %s" % (e.args[0], e.args[1])
-                                                logging.warning("MySQL Error [%d]: %s" % (e.args[0], e.args[1]))
-                                        except IndexError:
-                                                print "MySQL Error: %s" % str(e)
-                                                conn.rollback()
+                if str(timestamp) not in data:
+                    URL2 = Host + "/api/wow/item/" + str(itemid)
+                    logging.debug(URL2)
+                    r = requests.get(URL2)
+                    ci = r.json()
+                    di = json.dumps(c, sort_keys=True, indent=0)
+                    ilvl = ci['itemLevel']
+                    print member
+                    print enc
+                    print type
+                    print itemid
+                    print timestamp
+                    print ilvl
+                    if ilvl > minilvl:
+                        isql = str("INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (enc,timestamp,type,itemid))
+                    else:
+                        isql = str("INSERT INTO wwspost.news(chrname, stamp, type, itemid, posted) VALUES('%s','%s','%s','%s','1')" % (enc,timestamp,type,itemid))
+                    try:
+                            x.execute(isql)
+                            conn.commit()
+                            logging.warning('Running query: %s' % isql)
+                    except mdb.Error, e:
+                            try:
+                                    print "MySQL Error [%d]: %s" % (e.args[0], e.args[1])
+                                    logging.warning("MySQL Error [%d]: %s" % (e.args[0], e.args[1]))
+                            except IndexError:
+                                    print "MySQL Error: %s" % str(e)
+                                    conn.rollback()
 
 lastrun = "UPDATE wwspost.last_run SET time = now()"
 try:
