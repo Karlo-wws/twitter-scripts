@@ -91,9 +91,9 @@ for results in c['news']:
                     print timestamp
                     print ilvl
                     if ilvl > minilvl:
-                        isql = str("INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (enc,timestamp,type,itemid))
+                        isql = "INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (memberc,timestamp,type,itemid))
                     else:
-                        isql = str("INSERT INTO wwspost.news(chrname, stamp, type, itemid, posted) VALUES('%s','%s','%s','%s','1')" % (enc,timestamp,type,itemid))
+                        isql = "INSERT INTO wwspost.news(chrname, stamp, type, itemid, posted) VALUES('%s','%s','%s','%s','1')" % (memberc,timestamp,type,itemid))
                     try:
                             x.execute(isql)
                             conn.commit()
