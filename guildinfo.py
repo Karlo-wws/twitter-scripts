@@ -79,9 +79,9 @@ for results in c['news']:
                 timestamp = results['timestamp']
                 URL2 = Host + "/api/wow/item" + itemid
                 logging.debug(UR2L)
-				r = requests.get(URL2)
-				ci = r.json()
-				di = json.dumps(c, sort_keys=True, indent=0)
+                r = requests.get(URL2)
+                ci = r.json()
+                di = json.dumps(c, sort_keys=True, indent=0)
                 ilvl = ci['itemLevel']
                 print ilvl
                 if ilvl > minilvl:
