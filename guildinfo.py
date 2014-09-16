@@ -6,6 +6,8 @@ from connection import conn,x
 logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING)
 
 Host = "http://us.battle.net"
+minilvl = 500
+
 parser = argparse.ArgumentParser()
 parser.add_argument('-r','--realm', help="Pass Realm without prompting",type=str)
 parser.add_argument('-g','--guild', help="Pass Guild without prompting",type=str)
@@ -75,24 +77,27 @@ for results in c['news']:
                 type = results['type']
                 itemid = results['itemId']
                 timestamp = results['timestamp']
-                if str(timestamp) not in data:
-                        print member
-                        print enc
-                        print type
-                        print itemid
-                        print timestamp
-                        isql = str("INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (enc,timestamp,type,itemid))
-                        try:
-                                x.execute(isql)
-                                conn.commit()
-                                logging.warning('Running query: %s' % isql)
-                        except mdb.Error, e:
+                ilvl = results['itemLevel']
+                print ilvl
+                if ilvl > minilvl:
+                        if str(timestamp) not in data:
+                                print member
+                                print enc
+                                print type
+                                print itemid
+                                print timestamp
+                                isql = str("INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (enc,timestamp,type,itemid))
                                 try:
-                                        print "MySQL Error [%d]: %s" % (e.args[0], e.args[1])
-                                        logging.warning("MySQL Error [%d]: %s" % (e.args[0], e.args[1]))
-                                except IndexError:
-                                        print "MySQL Error: %s" % str(e)
-                                        conn.rollback()
+                                        x.execute(isql)
+                                        conn.commit()
+                                        logging.warning('Running query: %s' % isql)
+                                except mdb.Error, e:
+                                        try:
+                                                print "MySQL Error [%d]: %s" % (e.args[0], e.args[1])
+                                                logging.warning("MySQL Error [%d]: %s" % (e.args[0], e.args[1]))
+                                        except IndexError:
+                                                print "MySQL Error: %s" % str(e)
+                                                conn.rollback()
 
 lastrun = "UPDATE wwspost.last_run SET time = now()"
 try:
