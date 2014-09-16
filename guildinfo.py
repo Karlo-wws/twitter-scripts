@@ -78,7 +78,7 @@ for results in c['news']:
                 itemid = results['itemId']
                 timestamp = results['timestamp']
                 URL2 = Host + "/api/wow/item" + str(itemid)
-                logging.debug(UR2L)
+                logging.debug(URL2)
                 r = requests.get(URL2)
                 ci = r.json()
                 di = json.dumps(c, sort_keys=True, indent=0)
