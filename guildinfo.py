@@ -77,7 +77,12 @@ for results in c['news']:
                 type = results['type']
                 itemid = results['itemId']
                 timestamp = results['timestamp']
-                ilvl = results['itemLevel']
+                URL2 = Host + "/api/wow/item" + itemid
+                logging.debug(UR2L)
+				r = requests.get(URL2)
+				ci = r.json()
+				di = json.dumps(c, sort_keys=True, indent=0)
+                ilvl = ci['itemLevel']
                 print ilvl
                 if ilvl > minilvl:
                         if str(timestamp) not in data:
