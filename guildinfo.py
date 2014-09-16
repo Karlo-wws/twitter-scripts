@@ -77,7 +77,7 @@ for results in c['news']:
                 type = results['type']
                 itemid = results['itemId']
                 timestamp = results['timestamp']
-                URL2 = Host + "/api/wow/item" + str(itemid)
+                URL2 = Host + "/api/wow/item/" + str(itemid)
                 logging.debug(URL2)
                 r = requests.get(URL2)
                 ci = r.json()
