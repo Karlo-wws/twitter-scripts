@@ -83,7 +83,7 @@ for results in c['news']:
                 ci = r.json()
                 di = json.dumps(c, sort_keys=True, indent=0)
                 ilvl = ci['itemLevel']
-                print URL2
+                print "URL is:" + URL2
                 print ci
                 print ilvl
                 if ilvl > minilvl:
