@@ -84,12 +84,6 @@ for results in c['news']:
                     ci = r.json()
                     di = json.dumps(c, sort_keys=True, indent=0)
                     ilvl = ci['itemLevel']
-                    print member
-                    print enc
-                    print type
-                    print itemid
-                    print timestamp
-                    print ilvl
                     if ilvl > minilvl:
                         isql = "INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (member,timestamp,type,itemid)
                     else:
