@@ -27,7 +27,7 @@ if numcheck > 0:
                 POST = '%s acquired %s http://www.wowhead.com/item=%s #loot #worldofwarcraft' % (enc,itemname,itemid)
                 logging.warning('Posting: %s' % POST)
                 try:
-                        os.system('python /var/www/wwsguild/twitter-scripts/posttwit.py -m "%s"' % unicode(POST))
+                        os.system('python /var/www/wwsguild/twitter-scripts/posttwit.py -m "%s"' % POST.encode("utf-8"))
                 except:
                         print "Error"
                         raise
