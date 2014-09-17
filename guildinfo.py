@@ -6,7 +6,7 @@ from connection import conn,x
 logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING)
 
 Host = "http://us.battle.net"
-minilvl = 500
+minilvl = 540
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-r','--realm', help="Pass Realm without prompting",type=str)
