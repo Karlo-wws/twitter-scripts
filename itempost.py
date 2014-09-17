@@ -14,7 +14,7 @@ if numcheck > 0:
         data = x.fetchall()
         for row in data:
                 charname = row[0]
-                enc = charname.encode("utf-8")
+                enc = charname.decode("utf-8")
                 itemid = str(row[1])
                 stamp = str(row[2])
                 URL = Host + "/api/wow/item/" + itemid
