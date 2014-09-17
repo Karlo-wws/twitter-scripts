@@ -8,13 +8,12 @@ x.execute("SET NAMES 'utf8'")
 sql = "SELECT chrname, itemid, stamp FROM wwspost.news WHERE posted='0' and type in ('itemPurchase','itemLoot','itemCraft')"
 
 info = x.execute(sql)
-print info
 numcheck = int(x.rowcount)
 if numcheck > 0:
         data = x.fetchall()
         for row in data:
                 charname = row[0]
-                enc = charname.decode("utf-8")
+                enc = unicode(charname)
                 itemid = str(row[1])
                 stamp = str(row[2])
                 URL = Host + "/api/wow/item/" + itemid
