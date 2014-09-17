@@ -20,10 +20,6 @@ if numcheck > 0:
                 r = requests.get(URL)
                 c = r.json()
                 itemname = c['name']
-                print charname
-                print enc
-                print itemid
-                print stamp
                 POST = '%s acquired %s http://www.wowhead.com/item=%s #loot #worldofwarcraft' % (enc,itemname,itemid)
                 logging.warning('Posting: %s' % POST)
                 try:
