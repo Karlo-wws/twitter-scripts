@@ -13,16 +13,17 @@ if numcheck > 0:
         data = x.fetchall()
         for row in data:
                 charname = row[0]
+                enc = unicode(charname)
                 achid = str(row[1])
                 stamp = str(row[2])
                 URL = Host + "/api/wow/achievement/" + achid
                 r = requests.get(URL)
                 c = r.json()
                 achname = c['title']
-                POST = "%s completed %s http://www.wowhead.com/achievement=%s #worldofwarcraft #achievement" % (charname,achname,achid)
+                POST = "%s completed %s http://www.wowhead.com/achievement=%s #worldofwarcraft #achievement" % (enc,achname,achid)
                 logging.warning('Posting: %s' % POST)
                 try:
-                        os.system('python /var/www/wwsguild/twitter-scripts/posttwit.py -m "%s"' % POST)
+                        os.system('python /var/www/wwsguild/twitter-scripts/posttwit.py -m "%s"' % POST.encode("utf-8"))
                 except:
                         print "Error"
                         raise
