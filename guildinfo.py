@@ -42,7 +42,7 @@ for results in c['news']:
                 achid = results['achievement']['id']
                 timestamp = results['timestamp']
                 if str(timestamp) not in data:
-                        isql = "INSERT INTO wwspost.news(stamp, chrname, type, achid) VALUES(" + str(timestamp) + ", '" + char + "', '" + type + "', " + str(achid) + ")"
+                        isql = "INSERT INTO wwspost.news(stamp, chrname, type, achid) VALUES(" + str(timestamp) + ", '" + member + "', '" + type + "', " + str(achid) + ")"
                         try:
                                 x.execute(isql)
                                 conn.commit()
