@@ -1,4 +1,4 @@
-import os, json, requests, urllib, argparse, logging
+import os, json, requests, urllib, argparse, logging, sys
 import MySQLdb as mdb
 from connection import conn,x
 
@@ -55,6 +55,7 @@ try:
 	status = c['status']
 	reason = c['reason']
 	logging.warning(reason)
+	sys.exit()
 except KeyError:
 	pass
 
