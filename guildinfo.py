@@ -34,6 +34,14 @@ exql = "SELECT stamp FROM wwspost.news"
 existing = x.execute(exql)
 data = str(x.fetchall())
 
+try:
+	status = c['status']
+	reason = c['reason']
+	logging.warning(reason)
+	sys.exit()
+except KeyError:
+	pass
+
 for results in c['news']:
         if results['type'] == "playerAchievement":
                 member = results['character']
