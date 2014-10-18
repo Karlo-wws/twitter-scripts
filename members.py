@@ -51,6 +51,12 @@ classes = {
 # print rank
 # {'Turku': 6L, 'Meekmillz': 8L, 'Karlo': 0L, 'Skizita': 2L, 'Guinivere': 1L, 'Syvala': 2L, 'Higoodbye': 8L, 'Evoluti\xc3\xb2n': 8L, 'Adenya': 2L, 'Edo': 6L, 'Deaora': 6L, 'Belleya': 1L, 'Jeina': 1L, 'Malynd': 2L, 'Thallsnipe': 2L, 'Trivestom': 6L, 'Xuluu': 3L, 'Bellaphe': 1L, 'Thallheal': 2L, 'Cylonna': 2L, 'Krazyk': 6L, 'Yedo': 6L, 'Fuknark': 6L, 'Becroft': 6L, 'Sayyid': 6L, 'Arlonel': 6L, 'Sybellea': 1L, 'Aileyra': 2L, 'Thallizen': 2L, 'Krimch': 2L, 'Dhorah': 7L, 'Thallakazot': 2L, 'Sheyna': 1L, 'Celthorn': 1L, 'Adaphasha': 1L, 'Thallys': 2L, 'Kyriis': 1L, 'Skcizito': 2L, 'Maeverity': 1L, 'Talyssah': 2L, 'Adanduin': 1L, 'Rhyian': 2L, 'Xulos': 8L, 'Cyndrall': 2L, 'Taylliar': 2L, 'Lorellana': 8L, 'Sevley': 1L, 'Thalladin': 2L, 'Saaid': 6L, 'Daphnee': 1L, 'Ravixwar': 6L, 'Xenuit': 3L, 'Pori': 6L, 'Seanwoo': 6L, 'Garavint': 1L, 'Zimakus': 1L, 'Tasin': 8L, 'Fandrion': 1L, 'Zaroda': 2L, 'Tyrelea': 2L, 'Syyinnia': 8L, 'Thallswipe': 2L, 'Rogitzo': 2L, 'Shamitzo': 2L, 'Xavaver': 8L, 'Lahti': 6L, 'Vavictus': 6L, 'Kalabar': 4L, 'Zumackha': 8L, 'Falrox': 6L, 'Syldria': 6L, 'Crauder': 1L, 'Vyten': 6L}
 
+try:
+	status = c['status']
+	reason = c['reason']
+	logging.warning(reason)
+except KeyError:
+	pass
 
 for results in c['members']:
         member = results['character']['name']
