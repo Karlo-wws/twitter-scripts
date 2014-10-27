@@ -20,7 +20,7 @@ if numcheck > 0:
                 r = requests.get(URL)
                 c = r.json()
                 itemname = c['name']
-                POST = '%s acquired %s http://www.wowhead.com/item=%s #loot #worldofwarcraft' % (enc,itemname,itemid)
+                POST = '%s acquired %s http://www.wowhead.com/item=%s #WoW #Warcraft' % (enc,itemname,itemid)
                 logging.warning('Posting: %s' % POST)
                 try:
                         os.system('python /var/www/wwsguild/twitter-scripts/posttwit.py -m "%s"' % POST.encode("utf-8"))
