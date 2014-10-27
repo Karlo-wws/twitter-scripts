@@ -93,7 +93,10 @@ for results in c['news']:
                     di = json.dumps(c, sort_keys=True, indent=0)
                     print URL2
                     print ci
-                    ilvl = ci['itemLevel']
+                    try:
+                    	ilvl = ci['itemLevel']
+                    except KeyError:
+                    	print ci['availableContexts']
                     if ilvl > minilvl:
                         isql = "INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (member,timestamp,type,itemid)
                     else:
