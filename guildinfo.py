@@ -91,6 +91,7 @@ for results in c['news']:
                     r = requests.get(URL2)
                     ci = r.json()
                     di = json.dumps(c, sort_keys=True, indent=0)
+                    print URL2
                     print ci
                     ilvl = ci['itemLevel']
                     if ilvl > minilvl:
