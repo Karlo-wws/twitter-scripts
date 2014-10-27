@@ -96,6 +96,7 @@ for results in c['news']:
                     except KeyError:
                     	#print ci['availableContexts']
                     	# I dont like this, but until I figure out http://us.battle.net/en/forum/topic/15007381039, it's kind of boned.
+                    	ilvl = minilvl - 1
                     	continue
                     if ilvl > minilvl:
                         isql = "INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (member,timestamp,type,itemid)
