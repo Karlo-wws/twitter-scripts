@@ -91,12 +91,12 @@ for results in c['news']:
                     r = requests.get(URL2)
                     ci = r.json()
                     di = json.dumps(c, sort_keys=True, indent=0)
-                    print URL2
-                    print ci
                     try:
                     	ilvl = ci['itemLevel']
                     except KeyError:
-                    	print ci['availableContexts']
+                    	#print ci['availableContexts']
+                    	# I dont like this, but until I figure out http://us.battle.net/en/forum/topic/15007381039, it's kind of boned.
+                    	continue
                     if ilvl > minilvl:
                         isql = "INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (member,timestamp,type,itemid)
                     else:
