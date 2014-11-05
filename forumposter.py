@@ -2,7 +2,7 @@ import os, logging
 import MySQLdb as mdb
 from connection import conn,x
 
-logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING)
+logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING, format='%(asctime)s %(message)s')
 
 sql = "SELECT a.post_id, a.post_text,a.topic_id, b.username FROM wip1310308551954.phpbb_posts a INNER JOIN wip1310308551954.phpbb_users b on a.poster_id = b.user_id WHERE a.forum_id=19 AND a.post_tweeted=0 and a.post_subject not like 'Re:%'"
 
