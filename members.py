@@ -2,7 +2,7 @@ import os, json, requests, urllib, argparse, logging, sys
 import MySQLdb as mdb
 from connection import conn,x
 
-logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING)
+logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING, format='%(asctime)s %(message)s')
 
 Host = "http://us.battle.net"
 parser = argparse.ArgumentParser()
