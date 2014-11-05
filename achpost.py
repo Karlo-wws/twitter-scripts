@@ -3,7 +3,7 @@ import MySQLdb as mdb
 from connection import conn,x
 
 Host = "http://us.battle.net"
-logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING)
+logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING, format='%(asctime)s %(message)s')
 
 sql = "SELECT chrname, achid, stamp FROM wwspost.news WHERE posted='0' and type='playerAchievement'"
 
