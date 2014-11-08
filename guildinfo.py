@@ -99,7 +99,6 @@ for results in c['news']:
                     	# I dont like this, but until I figure out http://us.battle.net/en/forum/topic/15007381039, it's kind of boned.
                     	ilvl = minilvl - 1
                     	logging.warning("Item with multiple versions found: %s" % itemid)
-                    	continue
                     if ilvl > minilvl:
                         isql = "INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (member,timestamp,type,itemid)
                     else:
