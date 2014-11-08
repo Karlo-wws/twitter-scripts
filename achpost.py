@@ -1,6 +1,7 @@
 import os, json, requests, urllib, logging
 import MySQLdb as mdb
 from connection import conn,x
+from apikey import key
 
 Host = "https://us.api.battle.net"
 logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING, format='%(asctime)s %(message)s')
