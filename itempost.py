@@ -1,8 +1,9 @@
 import os, json, requests, urllib, logging
 import MySQLdb as mdb
 from connection import conn,x
+from apikey import key
 
-Host = "http://us.battle.net"
+Host = "https://us.api.battle.net"
 logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING, format='%(asctime)s %(message)s')
 x.execute("SET NAMES 'utf8'")
 sql = "SELECT chrname, itemid, stamp FROM wwspost.news WHERE posted='0' and type in ('itemPurchase','itemLoot','itemCraft')"
@@ -16,7 +17,7 @@ if numcheck > 0:
                 enc = unicode(charname)
                 itemid = str(row[1])
                 stamp = str(row[2])
-                URL = Host + "/api/wow/item/" + itemid
+                URL = Host + "/wow/item/" + str(itemid) + "?locale=en_US&apikey=" + key
                 r = requests.get(URL)
                 c = r.json()
                 itemname = c['name']
