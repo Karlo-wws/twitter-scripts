@@ -87,7 +87,7 @@ for results in c['news']:
                 itemid = results['itemId']
                 timestamp = results['timestamp']
                 if str(timestamp) not in data:
-                    URL2 = Host + "/api/wow/item/" + str(itemid)
+                    URL2 = Host + "/wow/item/" + str(itemid) + "?locale=en_US&apikey=" + key
                     logging.debug(URL2)
                     r = requests.get(URL2)
                     ci = r.json()
