@@ -4,7 +4,7 @@ from connection import conn,x
 from apikey import key
 
 
-logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.DEBUG, format='%(asctime)s %(message)s')
+logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING, format='%(asctime)s %(message)s')
 
 Host = "https://us.api.battle.net"
 minilvl = 540
