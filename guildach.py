@@ -2,7 +2,7 @@ import os, json, requests, urllib, logging
 import MySQLdb as mdb
 from connection import conn,x
 
-Host = "http://us.battle.net"
+Host = "https://us.api.battle.net"
 logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING, format='%(asctime)s %(message)s')
 
 sql = "SELECT achid, stamp FROM wwspost.news WHERE posted='0' and type='guildAchievement'"
@@ -14,7 +14,7 @@ if numcheck > 0:
         for row in data:
                 achid = str(row[0])
                 stamp = str(row[1])
-                URL = Host + "/api/wow/achievement/" + achid
+                URL = Host + "/wow/achievement/" + achid + "?fields=news&locale=en_US&apikey=" + key
                 r = requests.get(URL)
                 c = r.json()
                 achname = c['title']
