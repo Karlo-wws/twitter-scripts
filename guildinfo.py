@@ -1,11 +1,12 @@
 import json, requests, urllib, argparse, logging, sys
 import MySQLdb as mdb
 from connection import conn,x
+from apikey import key
 
 
-logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING, format='%(asctime)s %(message)s')
+logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.DEBUG, format='%(asctime)s %(message)s')
 
-Host = "http://us.battle.net"
+Host = "https://us.api.battle.net"
 minilvl = 540
 
 parser = argparse.ArgumentParser()
@@ -24,7 +25,7 @@ if (args.guild):
 else:
         Guild = raw_input('Guild Name:')
 GuildName = urllib.quote(Guild)
-URL = Host + "/api/wow/guild/" + Realm + "/" + GuildName + "?fields=news"
+URL = Host + "/wow/guild/" + Realm + "/" + GuildName + "?fields=news&locale=en_US&apikey=" + key
 logging.debug(URL)
 r = requests.get(URL)
 c = r.json()
