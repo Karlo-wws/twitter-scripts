@@ -43,77 +43,80 @@ try:
 except KeyError:
 	pass
 
-for results in c['news']:
-        if results['type'] == "playerAchievement":
-                member = results['character']
-                char = member.encode("utf-8")
-                type = results['type']
-                achid = results['achievement']['id']
-                timestamp = results['timestamp']
-                if str(timestamp) not in data:
-                        isql = "INSERT INTO wwspost.news(stamp, chrname, type, achid) VALUES(" + str(timestamp) + ", '" + member + "', '" + type + "', " + str(achid) + ")"
-                        try:
-                                x.execute(isql)
-                                conn.commit()
-                                logging.warning('Running query: %s' % isql)
-                        except mdb.Error, e:
-                                try:
-                                        print "MySQL Error [%d]: %s" % (e.args[0], e.args[1])
-                                        logging.warning("MySQL Error [%d]: %s" % (e.args[0], e.args[1]))
-                                except IndexError:
-                                        print "MySQL Error: %s" % str(e)
-                                        conn.rollback()
-        elif results['type'] == "guildAchievement":
-                type = results['type']
-                achid = results['achievement']['id']
-                timestamp = results['timestamp']
-                if str(timestamp) not in data:
-                        isql = "INSERT INTO wwspost.news(stamp, type, achid) VALUES(" + str(timestamp) + ", '" + type + "', " + str(achid) + ")"
-                        try:
-                                x.execute(isql)
-                                conn.commit()
-                                logging.warning('Running query: %s' % isql)
-                        except mdb.Error, e:
-                                try:
-                                        print "MySQL Error [%d]: %s" % (e.args[0], e.args[1])
-                                        logging.warning("MySQL Error [%d]: %s" % (e.args[0], e.args[1]))
-                                except IndexError:
-                                        print "MySQL Error: %s" % str(e)
-                                        conn.rollback()
-        else:
-                member = results['character']
-                enc = member.encode("utf-8")
-                type = results['type']
-                itemid = results['itemId']
-                timestamp = results['timestamp']
-                if str(timestamp) not in data:
-                    URL2 = Host + "/wow/item/" + str(itemid) + "?locale=en_US&apikey=" + key
-                    logging.debug(URL2)
-                    r = requests.get(URL2)
-                    ci = r.json()
-                    di = json.dumps(c, sort_keys=True, indent=0)
-                    try:
-                    	ilvl = ci['itemLevel']
-                    except KeyError:
-                    	#print ci['availableContexts']
-                    	# I dont like this, but until I figure out http://us.battle.net/en/forum/topic/15007381039, it's kind of boned.
-                    	ilvl = minilvl - 1
-                    	logging.warning("Item with multiple versions found: %s" % itemid)
-                    if ilvl > minilvl:
-                        isql = "INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (member,timestamp,type,itemid)
-                    else:
-                        isql = "INSERT INTO wwspost.news(chrname, stamp, type, itemid, posted) VALUES('%s','%s','%s','%s','1')" % (member,timestamp,type,itemid)
-                    try:
-                            x.execute(isql)
-                            conn.commit()
-                            logging.warning('Running query: %s' % isql)
-                    except mdb.Error, e:
+try:
+    for results in c['news']:
+            if results['type'] == "playerAchievement":
+                    member = results['character']
+                    char = member.encode("utf-8")
+                    type = results['type']
+                    achid = results['achievement']['id']
+                    timestamp = results['timestamp']
+                    if str(timestamp) not in data:
+                            isql = "INSERT INTO wwspost.news(stamp, chrname, type, achid) VALUES(" + str(timestamp) + ", '" + member + "', '" + type + "', " + str(achid) + ")"
                             try:
-                                    print "MySQL Error [%d]: %s" % (e.args[0], e.args[1])
-                                    logging.warning("MySQL Error [%d]: %s" % (e.args[0], e.args[1]))
-                            except IndexError:
-                                    print "MySQL Error: %s" % str(e)
-                                    conn.rollback()
+                                    x.execute(isql)
+                                    conn.commit()
+                                    logging.warning('Running query: %s' % isql)
+                            except mdb.Error, e:
+                                    try:
+                                            print "MySQL Error [%d]: %s" % (e.args[0], e.args[1])
+                                            logging.warning("MySQL Error [%d]: %s" % (e.args[0], e.args[1]))
+                                    except IndexError:
+                                            print "MySQL Error: %s" % str(e)
+                                            conn.rollback()
+            elif results['type'] == "guildAchievement":
+                    type = results['type']
+                    achid = results['achievement']['id']
+                    timestamp = results['timestamp']
+                    if str(timestamp) not in data:
+                            isql = "INSERT INTO wwspost.news(stamp, type, achid) VALUES(" + str(timestamp) + ", '" + type + "', " + str(achid) + ")"
+                            try:
+                                    x.execute(isql)
+                                    conn.commit()
+                                    logging.warning('Running query: %s' % isql)
+                            except mdb.Error, e:
+                                    try:
+                                            print "MySQL Error [%d]: %s" % (e.args[0], e.args[1])
+                                            logging.warning("MySQL Error [%d]: %s" % (e.args[0], e.args[1]))
+                                    except IndexError:
+                                            print "MySQL Error: %s" % str(e)
+                                            conn.rollback()
+            else:
+                    member = results['character']
+                    enc = member.encode("utf-8")
+                    type = results['type']
+                    itemid = results['itemId']
+                    timestamp = results['timestamp']
+                    if str(timestamp) not in data:
+                        URL2 = Host + "/wow/item/" + str(itemid) + "?locale=en_US&apikey=" + key
+                        logging.debug(URL2)
+                        r = requests.get(URL2)
+                        ci = r.json()
+                        di = json.dumps(c, sort_keys=True, indent=0)
+                        try:
+                        	ilvl = ci['itemLevel']
+                        except KeyError:
+                        	#print ci['availableContexts']
+                        	# I dont like this, but until I figure out http://us.battle.net/en/forum/topic/15007381039, it's kind of boned.
+                        	ilvl = minilvl - 1
+                        	logging.warning("Item with multiple versions found: %s" % itemid)
+                        if ilvl > minilvl:
+                            isql = "INSERT INTO wwspost.news(chrname, stamp, type, itemid) VALUES('%s','%s','%s','%s')" % (member,timestamp,type,itemid)
+                        else:
+                            isql = "INSERT INTO wwspost.news(chrname, stamp, type, itemid, posted) VALUES('%s','%s','%s','%s','1')" % (member,timestamp,type,itemid)
+                        try:
+                                x.execute(isql)
+                                conn.commit()
+                                logging.warning('Running query: %s' % isql)
+                        except mdb.Error, e:
+                                try:
+                                        print "MySQL Error [%d]: %s" % (e.args[0], e.args[1])
+                                        logging.warning("MySQL Error [%d]: %s" % (e.args[0], e.args[1]))
+                                except IndexError:
+                                        print "MySQL Error: %s" % str(e)
+                                        conn.rollback()
+except KeyError:
+    logging.warning("Problem getting data, information found: %s " % c)
 
 lastrun = "UPDATE wwspost.last_run SET time = now()"
 try:
