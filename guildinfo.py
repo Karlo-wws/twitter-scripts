@@ -7,7 +7,7 @@ from apikey import key
 logging.basicConfig(filename='/var/log/guildinfo.log', level=logging.WARNING, format='%(asctime)s %(message)s')
 
 Host = "https://us.api.battle.net"
-minilvl = 540
+minilvl = 630
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-r','--realm', help="Pass Realm without prompting",type=str)
